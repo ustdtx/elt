@@ -1,6 +1,6 @@
 # English Tutor
 
-English tutoring conversations for children aged five to seven. The application combines authored three-level curriculum content with a single tutor persona, mode switching, voice input/output, parent accounts, and progress records.
+English tutoring conversations for children aged five to seven. The application combines authored three-level curriculum content with a single tutor persona, mode switching, parent accounts, and progress records.
 
 ## Features
 
@@ -8,8 +8,6 @@ English tutoring conversations for children aged five to seven. The application 
 - Authored curriculum targets, activities, placement, and level exit assessment.
 - Learning records that require three consecutive strong turns before mastery.
 - Parent authentication and parent-owned child profiles.
-- Browser speech recognition with Deepgram STT fallback.
-- Sentence-streamed Deepgram Aura TTS with device voice fallback.
 - MongoDB persistence with an in-memory fallback for local development.
 
 ## Requirements
@@ -18,7 +16,6 @@ English tutoring conversations for children aged five to seven. The application 
 - npm
 - MongoDB Atlas or another MongoDB deployment for persistent accounts and profiles
 - An LLM provider key: Google Gemini or Groq
-- Optional Deepgram key for hosted speech recognition and speech output
 
 ## Local Setup
 
@@ -48,7 +45,7 @@ English tutoring conversations for children aged five to seven. The application 
 
 5. Open `http://localhost:3000`.
 
-Without `MONGODB_URI`, profiles use process memory and are lost when the server restarts. Without Deepgram, browser speech recognition and device speech synthesis are used where available.
+Without `MONGODB_URI`, profiles use process memory and are lost when the server restarts.
 
 ## Commands
 
@@ -72,8 +69,6 @@ npm start         # serve the production build
 | `LLM_ITPM` | No | Per-minute input token budget |
 | `LLM_MAX_TOKENS` | No | Tutor response output cap |
 | `LLM_REASONING_EFFORT` | No | Reasoning setting for supported providers |
-| `DEEPGRAM_API_KEY` | No | STT fallback and TTS proxy |
-| `DEEPGRAM_TTS_VOICE` | No | Deepgram Aura voice name |
 | `MONGODB_URI` | Production | MongoDB connection string |
 | `MONGODB_DB` | No | MongoDB database, default `elt` |
 
@@ -85,7 +80,7 @@ Never commit `.env.local` or other `.env` files. `.env.example` contains placeho
 2. In Vercel, import the repository as a Next.js project.
 3. Add the production environment variables from the table above in **Project Settings -> Environment Variables**.
 4. Use the default install and build settings. The build command is `npm run build`.
-5. Deploy and verify authentication, child creation, chat streaming, progress, and voice routes.
+5. Deploy and verify authentication, child creation, chat streaming, and progress.
 
 MongoDB must allow connections from Vercel. For MongoDB Atlas, configure an appropriate network access rule and use a least-privilege database user. Production should always set `MONGODB_URI`; the memory fallback is not durable and is not suitable for a multi-instance deployment.
 
@@ -95,14 +90,12 @@ Vercel preview deployments should use separate preview credentials or a separate
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Child lesson chat and voice experience |
+| `/` | Child lesson chat |
 | `/login` | Parent login |
 | `/register` | Parent registration |
 | `/dashboard` | Parent child management and lesson entry |
 | `/progress` | Parent-facing learning record |
 | `POST /api/chat` | Authenticated streamed tutoring turn |
-| `POST /api/stt` | Deepgram speech-to-text proxy |
-| `POST /api/tts` | Deepgram text-to-speech proxy |
 | `GET /api/progress?childId=` | Authenticated child progress |
 | `GET /api/metrics` | In-process latency metrics |
 | `GET/POST /api/children` | Authenticated child profile management |

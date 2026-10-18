@@ -9,7 +9,6 @@ flowchart TD
         AuthAPI[Auth API routes<br/>register, login, logout, me]
         ChildAPI[Children and progress API routes]
         ChatAPI[POST /api/chat<br/>Node.js streaming route]
-        VoiceAPI[STT and TTS proxy routes]
         Auth[HttpOnly parent session<br/>ownership checks]
         Mode[Mode selection<br/>learning, chat, play, support]
         Curriculum[Authored curriculum<br/>levels, targets, activities, SEL]
@@ -23,13 +22,11 @@ flowchart TD
     Mongo[(MongoDB Atlas<br/>profiles and checkpoints)]
     Memory[(Memory fallback<br/>non-durable local mode)]
     LLM[Gemini or Groq]
-    Deepgram[Deepgram STT and Aura TTS]
 
     Browser --> Pages
     Browser --> AuthAPI
     Browser --> ChildAPI
     Browser --> ChatAPI
-    Browser --> VoiceAPI
 
     AuthAPI --> Auth
     ChildAPI --> Auth
@@ -49,8 +46,6 @@ flowchart TD
     Learn --> Mongo
     ChatAPI --> Metrics
 
-    VoiceAPI --> Deepgram
-    Browser -. device speech fallback .-> Browser
 ```
 
 ## Request Boundaries
@@ -58,8 +53,8 @@ flowchart TD
 - Pages are client-facing React routes under `src/app`.
 - API routes authenticate the parent before reading or changing child data.
 - `POST /api/chat` is a Node.js route because it uses LangGraph, provider SDKs, MongoDB, and streaming.
-- External LLM and Deepgram credentials are server-only environment variables.
-- The browser never calls the LLM or Deepgram directly.
+- External LLM credentials are server-only environment variables.
+- The browser never calls the LLM directly.
 
 ## Main Chat Flow
 

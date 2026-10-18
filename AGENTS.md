@@ -15,14 +15,12 @@ One-to-one English teaching conversations for children aged five to seven, deliv
 - Orchestration: `@langchain/langgraph` state graph with MongoDB checkpointer (`@langchain/langgraph-checkpoint-mongodb`), memory fallback when MongoDB is unreachable
 - LLM: Gemini via `@langchain/google-genai` or Groq via `@langchain/groq`, selected by `LLM_PROVIDER`
 - Storage: MongoDB Atlas, `profiles` collection; in-memory fallback without `MONGODB_URI`
-- Voice: on-device speech recognition primary (`src/lib/voice.ts`), automatic hand-over to microphone recording plus Deepgram proxy at `/api/stt` when it fails or is unavailable, sentence-streamed Deepgram Aura speech out via `/api/tts` with device voice fallback
 
 ## Routes
 
-- `/` — lesson view (chat plus voice)
+- `/` — lesson view (chat)
 - `/progress` — parent-facing learning record, nickname and curriculum labels only
 - `POST /api/chat` — one conversational turn, streamed
-- `POST /api/stt` — Deepgram speech recognition fallback
 - `GET /api/progress?childId=` — learning record for the progress page
 - `GET /api/metrics` — in-process latency percentiles for the current server process
 - `/login`, `/register`, `/dashboard` — parent authentication, child management, and learner selection

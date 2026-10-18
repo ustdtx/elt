@@ -8,11 +8,11 @@ The system provides one-to-one English practice for children aged five to seven.
 
 ### Web application
 
-Next.js App Router pages provide the lesson, authentication, parent dashboard, and progress views. Client components stream chat responses into the lesson log and use browser speech capabilities when available.
+Next.js App Router pages provide the lesson, authentication, parent dashboard, and progress views. The lesson client streams chat responses into the lesson log.
 
 ### API routes
 
-API routes are the server boundary for authentication, child ownership, chat, progress, metrics, STT, and TTS. Chat, STT, and TTS explicitly use the Node.js runtime.
+API routes are the server boundary for authentication, child ownership, chat, progress, and metrics. Chat explicitly uses the Node.js runtime.
 
 ### Conversation orchestration
 
@@ -66,14 +66,6 @@ Browser
   -> MongoDB profile/checkpoint write
 ```
 
-### Voice
-
-1. The browser tries on-device speech recognition first.
-2. If unavailable or unsuccessful, the browser records audio and sends it to `/api/stt`.
-3. `/api/stt` forwards audio to Deepgram and returns the transcript.
-4. Tutor response sentences are sent to `/api/tts` as needed.
-5. Deepgram Aura audio is played in the browser; the device voice is the fallback.
-
 ## Security and Privacy
 
 - Parent sessions use an HttpOnly cookie.
@@ -90,14 +82,14 @@ Provider calls use a token-budget queue and one retry. The client receives an ex
 
 ## Deployment Model
 
-Vercel hosts the Next.js pages and Node.js API functions. MongoDB Atlas provides durable profile and checkpoint storage. Gemini or Groq provides language generation. Deepgram is optional for hosted speech. Environment variables are configured per Vercel environment rather than committed to the repository.
+Vercel hosts the Next.js pages and Node.js API functions. MongoDB Atlas provides durable profile and checkpoint storage. Gemini or Groq provides language generation. Environment variables are configured per Vercel environment rather than committed to the repository.
 
 ## Operational Considerations
 
 - Use MongoDB for all production deployments, including previews that need persistence.
 - Keep provider token limits aligned with `LLM_ITPM` and `LLM_MAX_TOKENS`.
 - Monitor `GET /api/metrics` for in-process latency percentiles; these metrics reset when a server instance is replaced.
-- Test streaming, authentication, child ownership, placement, assessment, and voice fallback after deployment.
+- Test streaming, authentication, child ownership, placement, and assessment after deployment.
 - Avoid logging child message content or API secrets.
 
 ## Extension Rules
