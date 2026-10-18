@@ -1,0 +1,270 @@
+{
+  "level": 1,
+  "title": "From Words to Sentences",
+  "patterns": [
+    {
+      "id": "l1-can",
+      "text": "I can ___",
+      "examples": [
+        "I can run.",
+        "I can jump.",
+        "I can draw."
+      ],
+      "goal": "saying what you can do"
+    },
+    {
+      "id": "l1-this-is",
+      "text": "This is ___",
+      "examples": [
+        "This is a dog.",
+        "This is my book.",
+        "This is a big box."
+      ],
+      "goal": "naming things around you"
+    },
+    {
+      "id": "l1-i-like",
+      "text": "I like ___",
+      "examples": [
+        "I like apples.",
+        "I like dogs.",
+        "I like green."
+      ],
+      "goal": "saying what you like"
+    },
+    {
+      "id": "l1-i-am",
+      "text": "I am ___",
+      "examples": [
+        "I am happy.",
+        "I am five.",
+        "I am tired today."
+      ],
+      "goal": "saying how you are"
+    },
+    {
+      "id": "l1-i-see",
+      "text": "I see ___",
+      "examples": [
+        "I see a cat.",
+        "I see two birds.",
+        "I see a red ball."
+      ],
+      "goal": "saying what you see"
+    }
+  ],
+  "vocabulary": [
+    {
+      "item": "colors",
+      "kind": "set",
+      "words": [
+        "red",
+        "blue",
+        "green",
+        "yellow",
+        "orange",
+        "pink",
+        "black",
+        "white"
+      ]
+    },
+    {
+      "item": "numbers",
+      "kind": "set",
+      "words": [
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten"
+      ]
+    },
+    {
+      "item": "animals",
+      "kind": "set",
+      "words": [
+        "dog",
+        "cat",
+        "bird",
+        "fish",
+        "cow",
+        "pig",
+        "duck",
+        "frog",
+        "monkey",
+        "elephant",
+        "lion",
+        "horse"
+      ]
+    },
+    {
+      "item": "actions",
+      "kind": "set",
+      "words": [
+        "eat",
+        "drink",
+        "run",
+        "jump",
+        "sleep",
+        "sing",
+        "draw",
+        "play"
+      ]
+    }
+  ],
+  "phonics": [
+    {
+      "id": "l1-ph-cvc-a",
+      "focus": "short a CVC blending",
+      "words": [
+        "cat",
+        "hat",
+        "map",
+        "bag",
+        "ran"
+      ]
+    },
+    {
+      "id": "l1-ph-cvc-o",
+      "focus": "short o CVC blending",
+      "words": [
+        "dog",
+        "box",
+        "top",
+        "log",
+        "hot"
+      ]
+    },
+    {
+      "id": "l1-ph-cvc-e",
+      "focus": "short e CVC blending",
+      "words": [
+        "bed",
+        "pen",
+        "net",
+        "ten",
+        "leg"
+      ]
+    }
+  ],
+  "exits": [
+    "Child produces three pattern families independently across two different sessions.",
+    "Child reads ten CVC words aloud that the child already uses in speech."
+  ],
+  "activities": [
+    {
+      "id": "l1-play-colors",
+      "title": "Color hunt",
+      "how": "Ask the child to find something of a named color nearby and answer with the pattern This is a ___.",
+      "patternId": "l1-this-is"
+    },
+    {
+      "id": "l1-play-count",
+      "title": "Counting game",
+      "how": "Count familiar objects one by one together up to ten, letting the child say the numbers, then ask how many there are.",
+      "patternId": "l1-i-see"
+    },
+    {
+      "id": "l1-play-sounds",
+      "title": "Animal sounds",
+      "how": "Say an animal and its sound, have the child answer with the animal, then swap roles so the child leads.",
+      "patternId": "l1-can"
+    }
+  ],
+  "assessment": [
+    {
+      "id": "l1-as1",
+      "focus": "l1-can",
+      "ask": "Ask what the child can do, and have them answer with I can ___ in a full sentence."
+    },
+    {
+      "id": "l1-as2",
+      "focus": "l1-this-is",
+      "ask": "Point out a nearby object and have the child say This is a ___ about it."
+    },
+    {
+      "id": "l1-as3",
+      "focus": "l1-i-like",
+      "ask": "Ask what the child likes and have them answer with I like ___."
+    },
+    {
+      "id": "l1-as4",
+      "focus": "l1-i-am",
+      "ask": "Ask how the child feels and have them answer with I am ___."
+    },
+    {
+      "id": "l1-as5",
+      "focus": "l1-i-see",
+      "ask": "Describe a picture and have the child say what they see with I see ___."
+    },
+    {
+      "id": "l1-as6",
+      "focus": "colors",
+      "ask": "Name three things in the room and have the child add a color word before each one."
+    },
+    {
+      "id": "l1-as7",
+      "focus": "numbers",
+      "ask": "Have the child count five objects aloud without help."
+    },
+    {
+      "id": "l1-as8",
+      "focus": "animals",
+      "ask": "Have the child name the animals they know from a described picture."
+    },
+    {
+      "id": "l1-as9",
+      "focus": "actions",
+      "ask": "Mime one action and have the child say the action word in a short sentence."
+    },
+    {
+      "id": "l1-as10",
+      "focus": "l1-ph-cvc-a",
+      "ask": "Show or spell three short a words and have the child read them aloud: cat, hat, map."
+    }
+  ],
+  "sel": {
+    "goals": [
+      "Name one feeling word when asked.",
+      "Notice that mistakes are part of learning.",
+      "Show curiosity by asking what a word means."
+    ],
+    "checkin": [
+      "Ask how the child feels today and have them answer with one feeling word: happy, sad, tired, or excited.",
+      "Name two feeling words and let the child pick which one fits them today."
+    ],
+    "praise": [
+      "You said the whole word.",
+      "You used two words together.",
+      "You listened carefully before you answered.",
+      "You tried again after a tricky word.",
+      "You found the right word for your idea.",
+      "You said it clearly enough for me to understand.",
+      "You joined in without being asked.",
+      "You remembered that word from before."
+    ],
+    "encourage": [
+      "Trying is what counts.",
+      "Tricky words come with practice.",
+      "It is fine to think before you answer.",
+      "Every mistake teaches us the next step."
+    ],
+    "calm": [
+      {
+        "id": "l1-calm-breath",
+        "title": "Balloon breathing",
+        "how": "Guide one slow breath: breathe in while lifting the arms, breathe out slowly. Then return to one very easy word."
+      },
+      {
+        "id": "l1-calm-sound",
+        "title": "Quiet animal",
+        "how": "Ask the child to pick a calm animal and make its slow sound together, then say one easy word in that animal voice."
+      }
+    ]
+  }
+}

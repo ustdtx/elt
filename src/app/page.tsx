@@ -1,69 +1,240 @@
-import Image from "next/image";
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+
+interface Turn {
+  role: "child" | "tutor";
+  text: string;
+}
+
+interface ProfileState {
+  level: number;
+  activeMode: "learning" | "chat" | "play" | "support" | "conversation-learning";
+  activeMood: "happy" | "interested" | "uninterested" | "calm" | "sad" | "frustrated" | "worried" | "tired" | "unclear";
+  mode: "learning" | "chat" | "play" | "support";
+  consecutiveTeaching: number;
+  placementComplete: boolean;
+  name: string;
+}
 
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+  const [childId, setChildId] = useState<string>("");
+  const [childName, setChildName] = useState<string>("");
+  const [profileState, setProfileState] = useState<ProfileState>({
+    level: 1,
+    activeMode: "conversation-learning",
+    activeMood: "unclear",
+    mode: "learning",
+    consecutiveTeaching: 0,
+    placementComplete: false,
+    name: "friend",
+  });
+  const [authenticated, setAuthenticated] = useState<boolean | null>(null);
+  const [turns, setTurns] = useState<Turn[]>([]);
+  const [draft, setDraft] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [status, setStatus] = useState("");
+
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const refreshProfile = useCallback(async (cid: string, updateMode = true) => {
+    try {
+      const res = await fetch(`/api/progress?childId=${encodeURIComponent(cid)}`);
+      if (res.ok) {
+        const data = await res.json();
+        setProfileState((prev) => ({
+          ...prev,
+           level: data.level || 1,
+           ...(updateMode ? { activeMode: data.activeMode || "learning" } : {}),
+           ...(updateMode ? { activeMood: data.activeMood || "unclear" } : {}),
+           placementComplete: Boolean(data.placement?.complete),
+          name: data.nickname || prev.name,
+        }));
+      }
+    } catch (err) {
+      console.warn("Could not load progress:", err);
+    }
+  }, []);
+
+  useEffect(() => {
+    const load = async () => {
+      const me = await fetch("/api/auth/me");
+      if (!me.ok) {
+        setAuthenticated(false);
+        return;
+      }
+      setAuthenticated(true);
+      const children = await fetch("/api/children");
+      if (!children.ok) return;
+      const data = (await children.json()) as { children: { childId: string; name: string; level?: number }[] };
+      const requested = new URLSearchParams(window.location.search).get("childId");
+      const stored = requested || localStorage.getItem("elt-child-id");
+      const selected = data.children.find((child) => child.childId === stored) || data.children[0];
+      if (selected) {
+        setChildId(selected.childId);
+        setChildName(selected.name);
+        localStorage.setItem("elt-child-id", selected.childId);
+        void refreshProfile(selected.childId);
+      }
+    };
+    void load();
+  }, [refreshProfile]);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [turns]);
+
+  const send = useCallback(
+    async (text: string) => {
+      const trimmed = text.trim();
+      if (!trimmed || busy || !childId) return;
+      setBusy(true);
+      setDraft("");
+      setStatus("");
+      setTurns((t) => [...t, { role: "child", text: trimmed }, { role: "tutor", text: "" }]);
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ childId, text: trimmed }),
+        });
+        if (!res.ok || !res.body) throw new Error(String(res.status));
+        const activeMode = res.headers.get("X-Active-Mode");
+        if (activeMode === "learning" || activeMode === "chat" || activeMode === "play" || activeMode === "support") {
+          setProfileState((prev) => ({ ...prev, activeMode }));
+        }
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let full = "";
+        for (;;) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          const piece = decoder.decode(value, { stream: true });
+          if (!piece) continue;
+          full += piece;
+           setTurns((t) => {
+            const copy = t.slice();
+            if (copy.length && copy[copy.length - 1].role === "tutor") {
+              copy[copy.length - 1] = { role: "tutor", text: full };
+            }
+            return copy;
+          });
+        }
+        if (!full.trim()) {
+          setStatus("The AI returned no reply. Check the server log and try again.");
+        }
+        void refreshProfile(childId, true);
+      } catch {
+        setStatus("The lesson could not be reached. Please try again.");
+        setTurns((t) => {
+          const copy = t.slice();
+          if (copy.length && copy[copy.length - 1].role === "tutor") {
+            copy[copy.length - 1] = { role: "tutor", text: "" };
+          }
+          return copy;
+        });
+      } finally {
+        setBusy(false);
+      }
+    },
+    [busy, childId, refreshProfile]
+  );
+
+  if (authenticated === null) {
+    return <main className="lesson"><p className="logEmpty">Loading your lesson...</p></main>;
+  }
+
+  if (!authenticated) {
+    return (
+      <main className="lesson">
+        <header className="lessonHeader">
+           <div><p className="eyebrow">English tutor</p><h1>Parent sign in</h1></div>
+        </header>
+        <section className="panel">
+          <p className="mutedLine">Sign in to manage children and see their progress.</p>
+          <p><a className="send" href="/login">Log in</a>{" or "}<a href="/register">Register</a></p>
+        </section>
       </main>
-    </div>
+    );
+  }
+
+  if (!childId) {
+    return (
+      <main className="lesson">
+        <header className="lessonHeader">
+          <div><p className="eyebrow">Parent area</p><h1>Choose a learner</h1></div>
+        </header>
+        <section className="panel">
+          <p className="mutedLine">Add a child before starting a lesson.</p>
+          <a className="send" href="/dashboard">Open parent dashboard</a>
+        </section>
+      </main>
+    );
+  }
+
+  return (
+    <main className="lesson">
+      <header className="lessonHeader">
+        <div>
+          <p className="eyebrow">
+            Level {profileState.level} · Step-by-Step English
+          </p>
+          <h1>English Conversation</h1>
+          <div className="modeIndicator">
+            <span className={`modeDot ${profileState.activeMode}`}></span>
+            <span>Active mode: {profileState.activeMode === "conversation-learning" ? "Conversation + Learning" : profileState.activeMode === "chat" ? "Conversation" : profileState.activeMode === "play" ? "Engagement" : profileState.activeMode[0].toUpperCase() + profileState.activeMode.slice(1)} [{profileState.activeMood}]</span>
+          </div>
+        </div>
+         <div className="sessionActions">
+           <span className="sessionTag">Learner: <strong>{childName || "friend"}</strong></span>
+           <a className="quitButton" href="/dashboard">Quit</a>
+         </div>
+      </header>
+
+      {/* Conversational Chat Log */}
+      <div className="log" ref={scrollRef} aria-live="polite">
+        {turns.length === 0 && (
+          <p className="logEmpty">
+            Say hello or type what you would like to do.
+          </p>
+        )}
+        {turns.map((turn, i) =>
+          turn.role === "child" ? (
+            <div className="row child" key={i}>
+              <span className="turn child">{turn.text}</span>
+            </div>
+          ) : (
+            <div className="row tutor" key={i}>
+              <span className="turn tutor">{turn.text || "\u2026"}</span>
+            </div>
+          )
+        )}
+      </div>
+
+      {status && <p className="statusLine">{status}</p>}
+
+      {/* Child Typing Input */}
+      <form
+        className="composer"
+        onSubmit={(e) => {
+          e.preventDefault();
+          void send(draft);
+        }}
+      >
+        <input
+          className="draft"
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
+          placeholder="Type your reply to your English tutor here..."
+          disabled={busy}
+          aria-label="Message to teacher"
+          autoFocus
+        />
+        <button className="send" type="submit" disabled={busy || !draft.trim()}>
+          Send
+        </button>
+      </form>
+    </main>
   );
 }

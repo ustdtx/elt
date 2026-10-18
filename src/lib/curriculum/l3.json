@@ -1,0 +1,294 @@
+{
+  "level": 3,
+  "title": "Expression and Comprehension",
+  "patterns": [
+    {
+      "id": "l3-sequence",
+      "text": "First ___, then ___, last ___",
+      "examples": [
+        "First we eat, then we play, last we sleep.",
+        "First the bird came, then it ate, last it flew away."
+      ],
+      "goal": "telling things in order"
+    },
+    {
+      "id": "l3-because",
+      "text": "I feel ___ because ___",
+      "examples": [
+        "I feel happy because we played.",
+        "I feel sad because my toy broke.",
+        "I feel proud because I read a book."
+      ],
+      "goal": "giving a reason"
+    },
+    {
+      "id": "l3-bigger",
+      "text": "___ is (bigger/best) than ___",
+      "examples": [
+        "A car is bigger than a bike.",
+        "This is the biggest dog.",
+        "I run faster than my friend."
+      ],
+      "goal": "comparing two things"
+    },
+    {
+      "id": "l3-retell",
+      "text": "The story: ___ retold in three sentences",
+      "examples": [
+        "Here is my story. A dog found a ball. Then it lost it. Last a girl gave it back."
+      ],
+      "goal": "retelling a short story"
+    },
+    {
+      "id": "l3-polite",
+      "text": "Can I have ___, please?",
+      "examples": [
+        "Can I have the ball, please?",
+        "Can I help you?",
+        "Thank you for my snack."
+      ],
+      "goal": "asking politely"
+    },
+    {
+      "id": "l3-follow-up",
+      "text": "Ask a follow-up question",
+      "examples": [
+        "You like the park? What do you play there?",
+        "You drew a car? What color is it?"
+      ],
+      "goal": "asking a follow-up question"
+    }
+  ],
+  "vocabulary": [
+    {
+      "item": "question-words",
+      "kind": "set",
+      "words": [
+        "who",
+        "what",
+        "where",
+        "when",
+        "why",
+        "how",
+        "how many"
+      ]
+    },
+    {
+      "item": "feelings-deep",
+      "kind": "set",
+      "words": [
+        "proud",
+        "shy",
+        "brave",
+        "worried",
+        "curious",
+        "calm",
+        "kind",
+        "silly"
+      ]
+    },
+    {
+      "item": "time-words",
+      "kind": "set",
+      "words": [
+        "first",
+        "next",
+        "then",
+        "finally",
+        "today",
+        "tomorrow",
+        "yesterday",
+        "morning",
+        "night"
+      ]
+    },
+    {
+      "item": "routine",
+      "kind": "set",
+      "words": [
+        "wake up",
+        "brush teeth",
+        "get dressed",
+        "go to school",
+        "eat dinner",
+        "take a bath",
+        "go to bed"
+      ]
+    },
+    {
+      "item": "days",
+      "kind": "set",
+      "words": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ]
+    },
+    {
+      "item": "sight-words",
+      "kind": "set",
+      "words": [
+        "a",
+        "the",
+        "is",
+        "are",
+        "and",
+        "it",
+        "we",
+        "you",
+        "my",
+        "your",
+        "he",
+        "she",
+        "I",
+        "can",
+        "like"
+      ]
+    }
+  ],
+  "phonics": [
+    {
+      "id": "l3-ph-two-syll",
+      "focus": "decoding two-syllable known words",
+      "words": [
+        "tiger",
+        "water",
+        "open",
+        "little",
+        "rabbit",
+        "under"
+      ]
+    }
+  ],
+  "exits": [
+    "Child retells a story using first, next, then, final words.",
+    "Child carries an eight-to-ten-turn two-way conversation on a familiar topic.",
+    "Child answers literal and prediction questions about a spoken story."
+  ],
+  "activities": [
+    {
+      "id": "l3-play-chain",
+      "title": "Story chain",
+      "how": "Start a story sentence, the child adds the next, and you alternate three or four times, then have the child retell the whole chain.",
+      "patternId": "l3-sequence"
+    },
+    {
+      "id": "l3-play-feelings",
+      "title": "Feelings guess",
+      "how": "Describe a small situation and have the child name the feeling with a because reason, then invent one for you.",
+      "patternId": "l3-because"
+    },
+    {
+      "id": "l3-play-shop",
+      "title": "Shop role-play",
+      "how": "Run a polite shop exchange where the child asks with Can I have ___, please? and thanks you; then swap roles.",
+      "patternId": "l3-polite"
+    }
+  ],
+  "assessment": [
+    {
+      "id": "l3-as1",
+      "focus": "l3-sequence",
+      "ask": "Have the child retell three steps of a routine with first, then, last."
+    },
+    {
+      "id": "l3-as2",
+      "focus": "l3-because",
+      "ask": "Have the child say how they feel and why with I feel ___ because ___."
+    },
+    {
+      "id": "l3-as3",
+      "focus": "l3-bigger",
+      "ask": "Have the child compare two familiar things with bigger than or the biggest."
+    },
+    {
+      "id": "l3-as4",
+      "focus": "l3-retell",
+      "ask": "Tell a four-sentence story, then have the child retell it in three sentences."
+    },
+    {
+      "id": "l3-as5",
+      "focus": "l3-polite",
+      "ask": "Have the child ask for something politely and respond politely to you."
+    },
+    {
+      "id": "l3-as6",
+      "focus": "l3-follow-up",
+      "ask": "Tell the child one thing about you and have them ask a follow-up question."
+    },
+    {
+      "id": "l3-as7",
+      "focus": "question-words",
+      "ask": "Have the child ask you three different question-word questions."
+    },
+    {
+      "id": "l3-as8",
+      "focus": "time-words",
+      "ask": "Talk about today and tomorrow and have the child use both time words correctly."
+    },
+    {
+      "id": "l3-as9",
+      "focus": "feelings-deep",
+      "ask": "Have the child describe two emotions with a situation for each."
+    },
+    {
+      "id": "l3-as10",
+      "focus": "l3-ph-two-syll",
+      "ask": "Have the child read four two-syllable words aloud: tiger, water, rabbit, under."
+    }
+  ],
+  "sel": {
+    "goals": [
+      "Describe a feeling with a reason.",
+      "Show confidence by speaking at length without prompting.",
+      "Show curiosity by asking about words and ideas.",
+      "Encourage patience while building a longer answer."
+    ],
+    "checkin": [
+      "Ask how the child feels today and have them add a short reason.",
+      "Ask what kind of day it has been, using one feeling word and one reason.",
+      "Ask what the child is looking forward to today."
+    ],
+    "praise": [
+      "You told that in the right order.",
+      "You gave a reason for your feeling.",
+      "You carried the whole answer on your own.",
+      "You listened and answered the exact question.",
+      "You kept trying after a tricky word.",
+      "You used a word from an earlier lesson.",
+      "You corrected yourself and kept speaking.",
+      "You asked a thoughtful question.",
+      "You explained your idea clearly.",
+      "You remembered what you practiced before."
+    ],
+    "encourage": [
+      "Trying is what counts.",
+      "Tricky words come with practice.",
+      "It is fine to think before you answer.",
+      "Every mistake teaches us the next step.",
+      "You do not have to be fast to be good.",
+      "Long answers are built one sentence at a time."
+    ],
+    "calm": [
+      {
+        "id": "l3-calm-breath",
+        "title": "Balloon breathing",
+        "how": "Guide one slow balloon breath: in while lifting the arms, out slowly. Then name one easy sentence to say together."
+      },
+      {
+        "id": "l3-calm-two-good",
+        "title": "Two good things",
+        "how": "Ask for two good things about today, then turn one of them into a simple sentence together."
+      },
+      {
+        "id": "l3-calm-slow-story",
+        "title": "Slow story",
+        "how": "Tell a short calm story with no questions, then have the child tell one line of it back."
+      }
+    ]
+  }
+}

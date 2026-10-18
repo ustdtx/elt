@@ -1,0 +1,285 @@
+{
+  "level": 2,
+  "title": "Building Real Language",
+  "patterns": [
+    {
+      "id": "l2-where-is",
+      "text": "Where is ___? It is ___",
+      "examples": [
+        "Where is the ball? It is under the chair.",
+        "Where is mommy? She is in the kitchen."
+      ],
+      "goal": "asking and answering where things are"
+    },
+    {
+      "id": "l2-i-have",
+      "text": "I have ___",
+      "examples": [
+        "I have a red car.",
+        "I have two hands.",
+        "I have a small box."
+      ],
+      "goal": "saying what you have"
+    },
+    {
+      "id": "l2-adj-noun",
+      "text": "___ is (adjective)",
+      "examples": [
+        "The dog is fast.",
+        "The tea is hot.",
+        "My bag is new."
+      ],
+      "goal": "describing things"
+    },
+    {
+      "id": "l2-doing",
+      "text": "I am ___-ing now",
+      "examples": [
+        "I am reading now.",
+        "I am eating an apple.",
+        "The dog is running."
+      ],
+      "goal": "saying what you are doing now"
+    },
+    {
+      "id": "l2-i-did",
+      "text": "Yesterday I ___ (past)",
+      "examples": [
+        "Yesterday I played outside.",
+        "Yesterday I ate bread.",
+        "Yesterday I saw a dog."
+      ],
+      "goal": "telling what happened earlier"
+    },
+    {
+      "id": "l2-what-doing",
+      "text": "What are you doing? I am ___",
+      "examples": [
+        "What are you doing? I am drawing.",
+        "What is the bird doing? It is flying."
+      ],
+      "goal": "asking what someone is doing"
+    }
+  ],
+  "vocabulary": [
+    {
+      "item": "adjectives",
+      "kind": "set",
+      "words": [
+        "big",
+        "small",
+        "hot",
+        "cold",
+        "fast",
+        "slow",
+        "new",
+        "old",
+        "long",
+        "short"
+      ]
+    },
+    {
+      "item": "prepositions",
+      "kind": "set",
+      "words": [
+        "in",
+        "on",
+        "under",
+        "behind",
+        "next to",
+        "between"
+      ]
+    },
+    {
+      "item": "things-around",
+      "kind": "set",
+      "words": [
+        "box",
+        "chair",
+        "table",
+        "door",
+        "window",
+        "bag",
+        "book",
+        "ball",
+        "car",
+        "bus"
+      ]
+    },
+    {
+      "item": "family-people",
+      "kind": "set",
+      "words": [
+        "mommy",
+        "daddy",
+        "brother",
+        "sister",
+        "grandma",
+        "grandpa",
+        "friend",
+        "teacher"
+      ]
+    }
+  ],
+  "phonics": [
+    {
+      "id": "l2-ph-sh-ch",
+      "focus": "sh and ch digraphs",
+      "words": [
+        "shop",
+        "fish",
+        "ship",
+        "chip",
+        "chair",
+        "chin"
+      ]
+    },
+    {
+      "id": "l2-ph-th",
+      "focus": "th digraph",
+      "words": [
+        "this",
+        "that",
+        "thin",
+        "three",
+        "bath"
+      ]
+    },
+    {
+      "id": "l2-ph-blends",
+      "focus": "st, bl, fl blends",
+      "words": [
+        "stop",
+        "step",
+        "blue",
+        "black",
+        "flag",
+        "fly"
+      ]
+    }
+  ],
+  "exits": [
+    "Child holds a five-turn unrehearsed conversation on a familiar topic.",
+    "Child answers wh-questions about a spoken four-sentence story."
+  ],
+  "activities": [
+    {
+      "id": "l2-play-spy",
+      "title": "I spy",
+      "how": "Describe something in view with one adjective and have the child guess, then let the child give the clue.",
+      "patternId": "l2-adj-noun"
+    },
+    {
+      "id": "l2-play-hide",
+      "title": "Hide and find",
+      "how": "Hide an imagined object in different places and have the child say where it is with Where is ___? It is ___.",
+      "patternId": "l2-where-is"
+    },
+    {
+      "id": "l2-play-shop",
+      "title": "Shopping list",
+      "how": "Play a tiny shop where the child asks for items with I have ___ and I would like ___, then swaps to being the shopkeeper.",
+      "patternId": "l2-i-have"
+    }
+  ],
+  "assessment": [
+    {
+      "id": "l2-as1",
+      "focus": "l2-where-is",
+      "ask": "Ask where a familiar object is and have the child answer with a full Where is / It is sentence."
+    },
+    {
+      "id": "l2-as2",
+      "focus": "l2-i-have",
+      "ask": "Ask what the child has and have them answer with I have ___."
+    },
+    {
+      "id": "l2-as3",
+      "focus": "l2-adj-noun",
+      "ask": "Name an object and have the child describe it with an adjective in a full sentence."
+    },
+    {
+      "id": "l2-as4",
+      "focus": "l2-doing",
+      "ask": "Ask what someone is doing right now and have the child answer with the -ing form."
+    },
+    {
+      "id": "l2-as5",
+      "focus": "l2-i-did",
+      "ask": "Ask what the child did yesterday and accept one correct past-tense sentence."
+    },
+    {
+      "id": "l2-as6",
+      "focus": "l2-what-doing",
+      "ask": "Have the child ask you what you are doing, then answer it together."
+    },
+    {
+      "id": "l2-as7",
+      "focus": "prepositions",
+      "ask": "Place objects around an imagined scene and have the child use in, on, under, behind."
+    },
+    {
+      "id": "l2-as8",
+      "focus": "adjectives",
+      "ask": "Have the child give the opposite of four adjective words you say."
+    },
+    {
+      "id": "l2-as9",
+      "focus": "l2-ph-sh-ch",
+      "ask": "Ask the child to read four short words aloud: shop, fish, chip, chair."
+    },
+    {
+      "id": "l2-as10",
+      "focus": "l2-ph-blends",
+      "ask": "Ask the child to read four short words aloud: stop, step, blue, flag."
+    }
+  ],
+  "sel": {
+    "goals": [
+      "Name a feeling and connect it to a simple reason.",
+      "Show confidence by answering without a hint.",
+      "Stay curious when a word is new."
+    ],
+    "checkin": [
+      "Ask how the child feels today and have them answer with one feeling word.",
+      "Name two feelings and let the child pick which is closer to how they feel today.",
+      "Ask what made the child smile today."
+    ],
+    "praise": [
+      "You built the whole sentence on your own.",
+      "You read that word cleanly.",
+      "You listened carefully before you answered.",
+      "You kept trying after a tricky word.",
+      "You found the right word for your idea.",
+      "You said it in a full sentence.",
+      "You corrected yourself without help.",
+      "You asked a good question.",
+      "You took your time and got it right.",
+      "You used a word from an earlier lesson."
+    ],
+    "encourage": [
+      "Trying is what counts.",
+      "Tricky words come with practice.",
+      "It is fine to think before you answer.",
+      "Every mistake teaches us the next step.",
+      "You do not have to be fast to be good."
+    ],
+    "calm": [
+      {
+        "id": "l2-calm-breath",
+        "title": "Balloon breathing",
+        "how": "Guide one slow balloon breath: breathe in while lifting the arms, breathe out slowly. Then return to one easy word."
+      },
+      {
+        "id": "l2-calm-count",
+        "title": "Count to five",
+        "how": "Count slowly to five together, then have the child name one thing that is easy for them to say."
+      },
+      {
+        "id": "l2-calm-story",
+        "title": "Quiet story",
+        "how": "Tell a three-sentence calm story with no questions, then ask the child to say one word from it."
+      }
+    ]
+  }
+}
